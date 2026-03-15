@@ -1,31 +1,29 @@
 #include <iostream>
+#include <string>
+
 using namespace std;
 
-int main()
-{
-   int X = 0;
-   int NumberOfLine;
-   string Operators;
-   cin >> NumberOfLine;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-   for (int i = 0; i < NumberOfLine; i++)
-   {
-      cin >> Operators; // + or -
-      for (int j = 1; j < Operators.length() - 1; j++)
-      {
-         if (Operators[j] == '+')
-         {
-            X++;
-         }
-         else if (Operators[j] == '-')
-         {
-            X--;
-         }
-         else
-            X = X;
-      }
-   }
+    int numberOfStatements;
+    if (!(cin >> numberOfStatements)) return 0;
 
-   cout << X;
-   return 0;
+    int xValue = 0;
+    string currentOperation;
+
+    for (int i = 0; i < numberOfStatements; ++i) {
+        cin >> currentOperation;
+
+        if (currentOperation[1] == '+') {
+            xValue++;
+        } else {
+            xValue--;
+        }
+    }
+
+    cout << xValue << endl;
+
+    return 0;
 }
