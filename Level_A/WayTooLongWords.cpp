@@ -1,25 +1,27 @@
 #include <iostream>
+#include <string>
+
 using namespace std;
 
-int main()
-{
-   int NumberOfWord;
-   string word;
-   cin >> NumberOfWord;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-   for (int i = 1; i <= NumberOfWord; i++)
-   {
-      cin >> word;
+    int numberOfWords;
+    if (!(cin >> numberOfWords)) return 0;
 
-      if (word.length() > 10)
-      {
-         cout << word[0];
-         cout << word.length() - 2;
-         cout << word[word.length() - 1] << endl;
-      }
-      else
-         cout << word << endl;
-   }
+    while (numberOfWords--) {
+        string currentWord;
+        cin >> currentWord;
 
-   return 0;
+        int wordLength = currentWord.length();
+
+        if (wordLength > 10) {
+            cout << currentWord[0] << wordLength - 2 << currentWord[wordLength - 1] << "\n";
+        } else {
+            cout << currentWord << "\n";
+        }
+    }
+
+    return 0;
 }
