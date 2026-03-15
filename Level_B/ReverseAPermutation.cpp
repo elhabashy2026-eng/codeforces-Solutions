@@ -1,78 +1,51 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <cmath>
-#include <string>
 
 using namespace std;
 
 #define ll long long
 #define endl '\n'
 
-void fast_io()
-{
-   ios_base::sync_with_stdio(false);
-   cin.tie(NULL);
+void fast_io() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 }
 
-void solve()
-{
-   int N;
-   cin >> N;
-   vector<int> NumberOfNumber(N);
+void solve() {
+    int n;
+    if (!(cin >> n)) return;
 
-   for (int i = 0; i < N; i++)
-   {
-      cin >> NumberOfNumber[i];
-   }
-   int Target = NumberOfNumber[0];
-   for (int i = 0; i < N; i++)
-   {
-      if (Target < NumberOfNumber[i])
-      {
-         Target = NumberOfNumber[i];
-      }
-   }
+    vector<int> permutation(n);
+    for (int i = 0; i < n; i++) cin >> permutation[i];
 
-   for (int i = 0; i < N; i++)
-   {
-      if (Target == NumberOfNumber[i])
-      {
-         Target--;
-         continue;
-      }
-      else
-      {
-         for (int j = i + 1; j < N; j++)
-         {
-            if (Target == NumberOfNumber[j])
-            {
-               reverse(NumberOfNumber.begin() + i, NumberOfNumber.begin() + (j + 1));
+    int expectedValue = n;
+    for (int i = 0; i < n; i++) {
+        if (permutation[i] == expectedValue) {
+            expectedValue--;
+            continue;
+        }
 
-               for (int k = 0; k < N; k++)
-                  cout << NumberOfNumber[k] << " ";
-               cout << endl;
-               return;
+        for (int j = i + 1; j < n; j++) {
+            if (permutation[j] == expectedValue) {
+                reverse(permutation.begin() + i, permutation.begin() + j + 1);
+                break;
             }
-         }
-      }
-   }
-   for (int k = 0; k < N; k++)
-      cout << NumberOfNumber[k] << " ";
-   cout << endl;
+        }
+        break;
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << permutation[i] << (i == n - 1 ? "" : " ");
+    }
+    cout << endl;
 }
 
-int main()
-{
-   fast_io();
-
-   int t = 1;
-   cin >> t;
-
-   while (t--)
-   {
-      solve();
-   }
-
-   return 0;
+int main() {
+    fast_io();
+    int t;
+    if (cin >> t) {
+        while (t--) solve();
+    }
+    return 0;
 }
