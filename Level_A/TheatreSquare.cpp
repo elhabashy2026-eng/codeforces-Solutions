@@ -1,17 +1,20 @@
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
-int main()
-{
-   long long N , M ,a;
-   cin >> N >> M >> a;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-   long long rows = (N + a - 1) / a;
-   long long cols = (M + a - 1) / a;
+    long long theatreWidth, theatreHeight, flagstoneSize;
+    if (!(cin >> theatreWidth >> theatreHeight >> flagstoneSize)) return 0;
 
-   cout << rows * cols ;
+    long long flagstonesAlongWidth = (theatreWidth + flagstoneSize - 1) / flagstoneSize;
+    long long flagstonesAlongHeight = (theatreHeight + flagstoneSize - 1) / flagstoneSize;
 
-   return 0;
+    long long totalFlagstonesRequired = flagstonesAlongWidth * flagstonesAlongHeight;
+
+    cout << totalFlagstonesRequired << endl;
+
+    return 0;
 }
