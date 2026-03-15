@@ -1,32 +1,32 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
-int main()
-{
-   int NumberOfParticipants;
-   int Stantard;
-   int NumberAllowed[55];
-   int NumberOfPassed = 0;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-   cin >> NumberOfParticipants;
-   cin >> Stantard;
-   if (Stantard <= NumberOfParticipants)
-   {
-      for (int i = 0; i < NumberOfParticipants; i++)
-      {
-         cin >> NumberAllowed[i];
-      }
+    int numberOfParticipants;
+    int targetRankIndex;
 
-      for (int j = 0; j < NumberOfParticipants; j++)
-      {
-         if (NumberAllowed[j] >= NumberAllowed[Stantard - 1] && NumberAllowed[j] > 0)
-         {
-            NumberOfPassed += 1;
-         }
-      }
-      cout << NumberOfPassed;
-   }
-   else
-      cout << "Error: k cannot be larger than n!";
-   return 0;
+    if (!(cin >> numberOfParticipants >> targetRankIndex)) return 0;
+
+    vector<int> scores(numberOfParticipants);
+    for (int i = 0; i < numberOfParticipants; i++) {
+        cin >> scores[i];
+    }
+
+    int passingScore = scores[targetRankIndex - 1];
+    int qualifiedParticipantsCount = 0;
+
+    for (int i = 0; i < numberOfParticipants; i++) {
+        if (scores[i] >= passingScore && scores[i] > 0) {
+            qualifiedParticipantsCount++;
+        }
+    }
+
+    cout << qualifiedParticipantsCount << "\n";
+
+    return 0;
 }
