@@ -1,41 +1,31 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+
 using namespace std;
 
-int main()
-{
-   string ArithmeticExpressions;
-   string Num = "";
-   cin >> ArithmeticExpressions;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-   for (int i = 0; i < ArithmeticExpressions.length(); i++)
-   {
-      if (i % 2 == 0)
-      {
-         Num += ArithmeticExpressions[i];
-      }
-   }
+    string inputExpression;
+    cin >> inputExpression;
 
-   for (int i = 0; i < Num.length(); i++)
-   {
-      for (int j = 0; j < Num.length() - 1; j++)
-      {
-         if (Num[j] > Num[j + 1])
-         {
-            swap(Num[j], Num[j + 1]);
-         }
-      }
-   }
+    string numbersOnly = "";
 
-   for (int i = 0; i < Num.length(); i++)
-   {
-      cout << Num[i];
-      if (i < Num.length() - 1)
-      {
-         cout << "+";
-      }
-   }
+    for (int i = 0; i < inputExpression.length(); i += 2) {
+        numbersOnly += inputExpression[i];
+    }
 
-   return 0;
+    sort(numbersOnly.begin(), numbersOnly.end());
+
+    for (int i = 0; i < numbersOnly.length(); i++) {
+        cout << numbersOnly[i];
+        if (i < numbersOnly.length() - 1) {
+            cout << "+";
+        }
+    }
+
+    cout << "\n";
+    return 0;
 }
